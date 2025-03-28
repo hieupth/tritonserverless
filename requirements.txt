@@ -1,0 +1,6 @@
+trism
+runpod
+Jinja2
+transformers
+huggingface-hub
+
