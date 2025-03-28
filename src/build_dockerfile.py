@@ -22,6 +22,12 @@ ENV {{ arg }}=${{ arg }}{% endfor %}
 RUN apt-get update && apt-get install -y
 RUN pip install -r requirements.txt
 RUN python3 hf.py
+
+FROM {{ base_image }} as runner
+
+COPY --from=builder /models /models
+COPY --from=builder /venv /venv
+
 RUN chmod +x {{ run_script }}
 CMD ["./{{ run_script }}"]
 """
